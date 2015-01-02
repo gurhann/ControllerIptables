@@ -6,12 +6,13 @@
 package com.dursunc.bilgiguvenlik;
 
 import com.jcraft.jsch.UserInfo;
+import java.io.Serializable;
 
 /**
  *
  * @author gurhan
  */
-public class SshUserInfo implements UserInfo {
+public class SshUserInfo implements UserInfo,Serializable {
 
     String password;
 

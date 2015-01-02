@@ -15,25 +15,27 @@
             <pm:header title="Controller Iptables"></pm:header>
 
             <pm:content>
+                
                 <h:form>
+                    <p:growl id="msgs"  showDetail="true" />
                     <div class="ortala">
                         <img src="assets/img/testlogo.gif" id="logo"> </img>
                     </div>
                     <pm:field>
                         <p:outputLabel for="sunucu" value="Sunucu Ip:" />
-                        <p:inputText id="sunucu" value="#{connectSsh.user.ip}" />
+                        <p:inputText required="true" requiredMessage="Sunucu Ip girilmesi zorunludur." id="sunucu" value="#{connectSsh.user.ip}" />
                     </pm:field>
                     <pm:field>
                         <p:outputLabel for="kullanici" value="Kullanıcı Adı:" />
-                        <p:inputText id="kullanici" value="#{connectSsh.user.userName}"/>
+                        <p:inputText required="true" requiredMessage="Kullanıcı adı girilmesi zorunludur." id="kullanici" value="#{connectSsh.user.userName}"/>
                     </pm:field>
 
                     <pm:field>
                         <p:outputLabel for="password" value="Parola:" />
-                        <p:password id="password" value="#{connectSsh.user.passWord}" />
+                        <p:password required="true" requiredMessage="Parola girilmesi zorunludur." id="password" value="#{connectSsh.user.passWord}" />
                     </pm:field>
                     <pm:field>
-                        <p:commandButton value="Giriş" ajax="false"  action="#{connectSsh.test()}" />
+                        <p:commandButton value="Giriş" ajax="false"  action="#{connectSsh.loginSsh()}" />
              
                     </pm:field>
                        </h:form>

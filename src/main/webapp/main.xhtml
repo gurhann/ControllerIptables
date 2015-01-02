@@ -10,32 +10,75 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-          <pm:page id="first">
-              <pm:header title="&rdquo;#{connectSsh.user.ip}&rdquo; Sunucusu" ></pm:header>
-             
+        <pm:page id="first">
+            <pm:header title="&rdquo;#{connectSsh.user.ip}&rdquo; Sunucusu" ></pm:header>
+
             <pm:content>
                 <h:form>
                     <p:button outcome="pm:first" value="Anasayfa" />
                     <p:button outcome="pm:second" value="Anlık Request'ler" />
-                    <p:button outcome="pm:third" value="Kara Listesi" />
+                    <p:button outcome="pm:third" value="Kara Liste" />
                     <p:button outcome="pm:fourth" value="IP Banla" />
                     <p:button outcome="pm:fifth" value="Hakkımızda" />
                     <p:button outcome="pm:sixth" value="Çıkış" />
                 </h:form>
-                
+
             </pm:content>
             <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
         </pm:page>
- 
+
         <pm:page id="second">
-            <pm:header title="Page 2"></pm:header>
-             
+            <pm:header title="Anlık Request'ler"></pm:header>
+
             <pm:content>
-                <p>Page 2 content.</p>
+                <!-- <p:dataTable var="ip" value="#{dtMobileView.cars1}" tableStyleClass="ui-table-columntoggle">
+                    <p:column headerText="Id" >
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+
+                    <p:column headerText="IP" >
+                        <h:outputText value="#{car.year}" />
+                    </p:column>
+
+                    <p:column headerText="Port">
+                        <h:outputText value="#{car.brand}" />
+                    </p:column>
+
+                    <p:column headerText="Banla" >
+                        <h:outputText value="#{car.color}"/>
+                   </p:column>
+                </p:dataTable> -->
                 <p:button outcome="pm:first" value="Go Back" />
             </pm:content>
             <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
         </pm:page>
+        <pm:page id="third">
+            <pm:header title="Kara Liste"></pm:header>
+
+            <pm:content>
+                <!-- <p:dataTable var="ip" value="#{dtMobileView.cars1}" tableStyleClass="ui-table-columntoggle">
+                    <p:column headerText="Id" >
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+
+                    <p:column headerText="IP" >
+                        <h:outputText value="#{car.year}" />
+                    </p:column>
+
+                    <p:column headerText="Port">
+                        <h:outputText value="#{car.brand}" />
+                    </p:column>
+
+                    <p:column headerText="Banla" >
+                        <h:outputText value="#{car.color}"/>
+                   </p:column>
+                </p:dataTable> -->
+                <p:button outcome="pm:first" value="Go Back" />
+            </pm:content>
+            <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
+        </pm:page>
+        
+        
     </h:body>
 </html>
 
