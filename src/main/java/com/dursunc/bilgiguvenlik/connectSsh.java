@@ -19,9 +19,10 @@ public class connectSsh implements Serializable{
     private User user;
 
     public connectSsh() {
+        user = new User();
     }
     
-    public void test(){
+    public void loginSsh(){
         System.out.println(user.getIp()+" "+user.getUserName()+" "+user.getPassWord()+"dasdasd");
     
     }

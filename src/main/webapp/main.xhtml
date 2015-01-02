@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view renderKitId="PRIMEFACES_MOBILE" />
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+          <pm:page id="first">
+              <pm:header title="&rdquo;#{connectSsh.user.ip}&rdquo; Sunucusu" ></pm:header>
+             
+            <pm:content>
+                <h:form>
+                    <p:button outcome="pm:first" value="Anasayfa" />
+                    <p:button outcome="pm:second" value="Anlık Request'ler" />
+                    <p:button outcome="pm:third" value="Kara Listesi" />
+                    <p:button outcome="pm:fourth" value="IP Banla" />
+                    <p:button outcome="pm:fifth" value="Hakkımızda" />
+                    <p:button outcome="pm:sixth" value="Çıkış" />
+                </h:form>
+                
+            </pm:content>
+            <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
+        </pm:page>
+ 
+        <pm:page id="second">
+            <pm:header title="Page 2"></pm:header>
+             
+            <pm:content>
+                <p>Page 2 content.</p>
+                <p:button outcome="pm:first" value="Go Back" />
+            </pm:content>
+            <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
+        </pm:page>
+    </h:body>
+</html>
+
