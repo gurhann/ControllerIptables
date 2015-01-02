@@ -5,6 +5,10 @@
  */
 package com.dursunc.bilgiguvenlik;
 
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,8 +21,18 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class connectSsh implements Serializable{
     private User user;
-
-    public connectSsh() {
+    private Session jschSession;
+    private Channel channel;
+    public connectSsh() throws JSchException {
+        int port = 22;
+        JSch jsch = new JSch();
+        jschSession = jsch.getSession(user.getUserName(), user.getIp(), port);
+        jschSession.setUserInfo(new SshUserInfo(user.getPassWord()));
+        jschSession.connect();
+        
+        channel = jschSession.openChannel("exec");
+        channel.connect();
+        
     }
     
     public void test(){
@@ -29,7 +43,7 @@ public class connectSsh implements Serializable{
     public User getUser() {
         return user;
     }
-
+    
     public void setUser(User user) {
         this.user = user;
     }   
