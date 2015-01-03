@@ -47,7 +47,7 @@ public class SshUserInfo implements UserInfo,Serializable {
 
     @Override
     public void showMessage(String arg0) {
-        System.out.println(arg0);
+       
     }
 
 }

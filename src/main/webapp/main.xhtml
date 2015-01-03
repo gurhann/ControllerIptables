@@ -56,29 +56,15 @@
             <pm:header title="Kara Liste"></pm:header>
 
             <pm:content>
-                <!-- <p:dataTable var="ip" value="#{dtMobileView.cars1}" tableStyleClass="ui-table-columntoggle">
-                    <p:column headerText="Id" >
-                        <h:outputText value="#{car.id}" />
-                    </p:column>
-
-                    <p:column headerText="IP" >
-                        <h:outputText value="#{car.year}" />
-                    </p:column>
-
-                    <p:column headerText="Port">
-                        <h:outputText value="#{car.brand}" />
-                    </p:column>
-
-                    <p:column headerText="Banla" >
-                        <h:outputText value="#{car.color}"/>
-                   </p:column>
-                </p:dataTable> -->
-                <p:button outcome="pm:first" value="Go Back" />
+                <p:dataList value="#{connectSsh.bannedList}" var="ip" type="ordered">                    
+                    <h:outputText value="#{ip}" />
+                </p:dataList>
+                <p:button outcome="pm:first" value="Geri Dön" />
             </pm:content>
             <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
         </pm:page>
-        
-        
+
+
     </h:body>
 </html>
 
