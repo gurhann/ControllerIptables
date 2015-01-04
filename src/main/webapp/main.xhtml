@@ -16,6 +16,8 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        
+          <link href="assets/css/style.css" type="text/css" rel="stylesheet"></link>
     </h:head>
     <h:body>
         <pm:page id="first">
@@ -63,15 +65,37 @@
                         <h:outputText value="#{car.color}"/>
                    </p:column>
                 </p:dataTable> -->
-                <p:button outcome="pm:first" value="Go Back" />
+                <p:button outcome="pm:first" value="Geri Dön" />
             </pm:content>
             <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
         </pm:page>
+        <pm:page id="fifth">
+            <pm:header title="Hakkınızda"></pm:header>
+
+            <pm:content>
+                <h2 class="first">Controller Iptables</h2>
+                <div class="ortala">
+                    <div class="ortala">
+                        <img src="assets/img/logo.png" id="logo"> </img>
+                    </div>
+                </div>
+                <div>
+                    Iptables, Netfilter takımı ve birçok destekleyici tarafından geliştirilen güvelik duvarı yazılımıdır.Linux çekirdeğiyle konuşarak paket süzme kurallarını belirler. 
+                    Iptables, Linux işletim sisteminin varsayılan güvenlik duvarıdır. Bu güvenlik duvarı servislerin çalıştığı portlardan geçen trafiği engelleyebilir, başka bir porta yönlendirme yapabilir. Uygulamamız Iptables'ın bu özelliklerinden yola çıkarak 
+                    sunucular üzerinde Client IP yönetimini sağlar
+                </div>
+
+
+                <p:button outcome="pm:first" value="Geri Dön" />
+            </pm:content>
+            <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
+        </pm:page>
+
         <pm:page id="third">
             <pm:header title="Kara Liste"></pm:header>
 
             <pm:content>
-                 <p:growl id="msgs2" globalOnly="true" showDetail="true" />
+                <p:growl id="msgs2" globalOnly="true" showDetail="true" />
                 <h:form id="form">
 
                     <table class="table table-striped">
