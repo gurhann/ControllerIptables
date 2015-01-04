@@ -9,19 +9,26 @@
     <f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </h:head>
     <h:body>
         <pm:page id="first">
             <pm:header title="&rdquo;#{connectSsh.user.ip}&rdquo; Sunucusu" ></pm:header>
 
             <pm:content>
-
+                <p:growl id="msgs" globalOnly="true" showDetail="true" />
                 <p:button outcome="pm:first" value="Anasayfa" />
                 <p:button outcome="pm:second" value="Anlık Request'ler" />
                 <p:button outcome="pm:third" value="Kara Liste" />
                 <p:commandButton value="IP Banla" onclick="PF('ipbanDialog').show()" type='button' />
                 <p:dialog header="Header" widgetVar="ipbanDialog" showEffect="pop">
-                    <h:form>
+                    <h:form id="banForm">
                         <p:outputLabel for="bannedIp" value="Banlanacak Ip:" />
                         <p:inputText id="bannedIp" value="#{connectSsh.bannedIp}"/>
                         <p:commandButton value="Banla"  action="#{connectSsh.ipBan()}" onclick="ipbanDialog.hide()"/>
@@ -64,24 +71,30 @@
             <pm:header title="Kara Liste"></pm:header>
 
             <pm:content>
+                 <p:growl id="msgs2" globalOnly="true" showDetail="true" />
                 <h:form id="form">
-                    <p:dataTable var="car" value="#{connectSsh.bannedList}" tableStyleClass="ui-table-reflow">
-                        <p:column headerText="Id" >
-                            <h:outputText value="#{car}" />
-                        </p:column>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>İstemci IP</th>
+                                <th>Ban</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="ip" value="#{connectSsh.bannedList}" varStatus="a">
+                                <tr>
+                                    <th scope="row">#{a.index}</th>
+                                    <td>#{ip}</td>
+                                    <td><p:commandButton action="#{connectSsh.ipReBan(ip)}" ajax="false" value="Ban Kaldır" ></p:commandButton></td>
 
-                        <p:column headerText="Year" >
-                            <h:outputText value="#{car}" />
-                        </p:column>
+                                </tr>
+                            </ui:repeat>
 
-                        <p:column headerText="Brand" >
-                            <h:outputText value="#{car}" />
-                        </p:column>
 
-                        <p:column headerText="Color" >
-                            <h:outputText value="#{car}"/>
-                        </p:column>
-                    </p:dataTable>
+
+                        </tbody>
+                    </table>
 
                 </h:form>
 

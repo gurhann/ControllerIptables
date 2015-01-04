@@ -38,8 +38,9 @@ public class connectSsh implements Serializable {
     private Channel channel;
     private JSch jsch;
     private String endLineStr = " # ";
-    private List<String> bannedList = new ArrayList<String>();
+    private List<String> bannedList;
     private String bannedIp;
+    
 
     public connectSsh() throws JSchException {
 
@@ -57,6 +58,7 @@ public class connectSsh implements Serializable {
         try {
             jschConnect();
             InputStream in = runCommand(command);
+             bannedList = new ArrayList<String>();
             String dizi[] = (read(in).split("\\r?\\n"));
             System.out.println(dizi.length);
             for (int i = 2; i < dizi.length; i++) {
@@ -88,10 +90,27 @@ public class connectSsh implements Serializable {
 
     }
 
+    public void ipReBan(String ip) throws JSchException, IOException {
+        String command = "sudo iptables -D INPUT -s " + ip + " -j DROP";
+        try {            
+            System.out.println("----------->" + command);
+            jschConnect();
+            InputStream in = runCommand(command);
+            System.out.println(read(in));
+            connectOut();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("IP Ban Kaldırıldı.", "Banlanan Ip listesine bakabilirsiniz."));
+            bannedIpList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Sorun Var", "Ip ban kaldırılırken bir sorun çıktı"));
+        }
+    }
+    
     public void ipBan() throws JSchException, IOException {
         String command = "sudo iptables -A INPUT -s " + bannedIp + " -j DROP";
-        try {
-            
+        try {            
             System.out.println("----------->" + command);
             jschConnect();
             InputStream in = runCommand(command);
