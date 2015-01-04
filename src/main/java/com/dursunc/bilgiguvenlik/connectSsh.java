@@ -61,6 +61,7 @@ public class connectSsh implements Serializable {
              bannedList = new ArrayList<String>();
             String dizi[] = (read(in).split("\\r?\\n"));
             System.out.println(dizi.length);
+            bannedList = new ArrayList<String>();
             for (int i = 2; i < dizi.length; i++) {
                 bannedList.add(dizi[i]);
             }
@@ -118,6 +119,7 @@ public class connectSsh implements Serializable {
             connectOut();
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("IP Banlandı", "Banlanan Ip listesine bakabilirsiniz."));
+            bannedIpList();
 
         } catch (Exception e) {
             e.printStackTrace();
