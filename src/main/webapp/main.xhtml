@@ -16,8 +16,8 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        
-          <link href="assets/css/style.css" type="text/css" rel="stylesheet"></link>
+
+        <link href="assets/css/style.css" type="text/css" rel="stylesheet"></link>
     </h:head>
     <h:body>
         <pm:page id="first">
@@ -33,6 +33,12 @@
                     <h:form id="banForm">
                         <p:outputLabel for="bannedIp" value="Banlanacak Ip:" />
                         <p:inputText id="bannedIp" value="#{connectSsh.bannedIp}"/>
+                        <pm:field>
+                            <p:outputLabel for="usedPorts" value="Banlanacak Portlar" />
+                            <p:selectCheckboxMenu id="usedPorts" label="s" >
+                                <f:selectItems value="#{connectSsh.bannedList}" />
+                            </p:selectCheckboxMenu>
+                        </pm:field>  
                         <p:commandButton value="Banla"  action="#{connectSsh.ipBan()}" onclick="ipbanDialog.hide()"/>
                     </h:form>
                 </p:dialog>
@@ -102,16 +108,21 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Protokol</th>
                                 <th>İstemci IP</th>
+                                <th>Port</th>
                                 <th>Ban</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <ui:repeat var="ip" value="#{connectSsh.bannedList}" varStatus="a">
+                            <ui:repeat var="bannedItem" value="#{connectSsh.bannedList}" varStatus="a">
                                 <tr>
                                     <th scope="row">#{a.index}</th>
-                                    <td>#{ip}</td>
-                                    <td><p:commandButton action="#{connectSsh.ipReBan(ip)}" ajax="false" value="Ban Kaldır" ></p:commandButton></td>
+                                    <td>#{bannedItem.prot}</td>
+                                    <td>#{bannedItem.ip}</td>
+                                    <td>#{bannedItem.port}</td>
+                                    <td><p:commandButton action="#{connectSsh.ipReBan(bannedItem.ip, bannedItem.port)}" ajax="false" value="Ban Kaldır" ></p:commandButton></td>
 
                                 </tr>
                             </ui:repeat>
