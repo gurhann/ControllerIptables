@@ -39,8 +39,10 @@ public class connectSsh implements Serializable {
     private JSch jsch;
     private String endLineStr = " # ";
     private List<String> bannedList = new ArrayList<String>();
+    private String bannedIp;
 
     public connectSsh() throws JSchException {
+
         user = new User();
         config = new java.util.Properties();
         config.put("StrictHostKeyChecking", "no");
@@ -76,7 +78,7 @@ public class connectSsh implements Serializable {
 
             connectOut();
             bannedIpList();
-            url="main";
+            url = "main";
         } catch (Exception e) {
             System.out.println("+++++++++++++" + e.toString());
             FacesContext context = FacesContext.getCurrentInstance();
@@ -84,6 +86,25 @@ public class connectSsh implements Serializable {
         }
         return url;
 
+    }
+
+    public void ipBan() throws JSchException, IOException {
+        String command = "sudo iptables -A INPUT -s " + bannedIp + " -j DROP";
+        try {
+            
+            System.out.println("----------->" + command);
+            jschConnect();
+            InputStream in = runCommand(command);
+            System.out.println(read(in));
+            connectOut();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("IP Banlandı", "Banlanan Ip listesine bakabilirsiniz."));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Sorun Var", "Ip banlanırken bir sorun çıktı"));
+        }
     }
 
     public InputStream runCommand(String command) throws JSchException, IOException {
@@ -159,6 +180,14 @@ public class connectSsh implements Serializable {
 
     public void setBannedList(List<String> bannedList) {
         this.bannedList = bannedList;
+    }
+
+    public String getBannedIp() {
+        return bannedIp;
+    }
+
+    public void setBannedIp(String bannedIp) {
+        this.bannedIp = bannedIp;
     }
 
 }

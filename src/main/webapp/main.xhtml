@@ -14,14 +14,21 @@
             <pm:header title="&rdquo;#{connectSsh.user.ip}&rdquo; Sunucusu" ></pm:header>
 
             <pm:content>
-                <h:form>
-                    <p:button outcome="pm:first" value="Anasayfa" />
-                    <p:button outcome="pm:second" value="Anlık Request'ler" />
-                    <p:button outcome="pm:third" value="Kara Liste" />
-                    <p:button outcome="pm:fourth" value="IP Banla" />
-                    <p:button outcome="pm:fifth" value="Hakkımızda" />
-                    <p:button outcome="pm:sixth" value="Çıkış" />
-                </h:form>
+
+                <p:button outcome="pm:first" value="Anasayfa" />
+                <p:button outcome="pm:second" value="Anlık Request'ler" />
+                <p:button outcome="pm:third" value="Kara Liste" />
+                <p:commandButton value="IP Banla" onclick="PF('ipbanDialog').show()" type='button' />
+                <p:dialog header="Header" widgetVar="ipbanDialog" showEffect="pop">
+                    <h:form>
+                        <p:outputLabel for="bannedIp" value="Banlanacak Ip:" />
+                        <p:inputText id="bannedIp" value="#{connectSsh.bannedIp}"/>
+                        <p:commandButton value="Banla"  action="#{connectSsh.ipBan()}" onclick="ipbanDialog.hide()"/>
+                    </h:form>
+                </p:dialog>
+                <p:button outcome="pm:fifth" value="Hakkımızda" />
+                <p:button outcome="pm:sixth" value="Çıkış"  />
+
 
             </pm:content>
             <pm:footer title="Author Dursun Çimen &amp; Gürhan Küçük"></pm:footer>
